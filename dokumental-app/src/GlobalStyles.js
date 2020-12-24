@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: Helvetica, Sans-Serif;
     color: white;
     text-decoration: none;
+    box-sizing: border-box;
   }
   
   body{
@@ -16,6 +17,13 @@ const GlobalStyle = createGlobalStyle`
 
   ul {
     list-style-type: none;
+  }
+
+  button{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
   }
 
   h1{

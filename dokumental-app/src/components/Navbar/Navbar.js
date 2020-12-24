@@ -63,23 +63,18 @@ const NavItem = styled.li`
 `;
 
 const NavButton = styled.button`
-  background: none;
-  border: 1px solid #e04873;
+  border: ${({ theme: { colors } }) => `1px solid ${colors.main}`};
   padding: 0.3rem;
   transition: 0.2s;
-  cursor: pointer;
-  &:focus {
-    outline: 0;
-  }
   &:hover {
-    background: #e04873;
+    background: ${({ theme: { colors } }) => colors.main};
   }
 `;
 
 const NavLink = styled(Link)`
   transition: 0.3s;
   &:hover {
-    color: #e04873;
+    color: ${({ theme: { colors } }) => colors.main};
   }
 `;
 
