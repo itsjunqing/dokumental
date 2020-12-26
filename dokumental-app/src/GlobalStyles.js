@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    font-family: Helvetica, Sans-Serif;
+    font-family: Helvetica Light, Helvetica, Sans-Serif;
     text-decoration: none;
     box-sizing: border-box;
     font-size: 5vw;
@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
   h1{
     margin: 0;
     font-size: 7vw;
+    font-weight: normal;
   }
   ul {
     list-style-type: none;

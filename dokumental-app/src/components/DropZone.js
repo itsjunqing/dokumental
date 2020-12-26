@@ -13,12 +13,13 @@ const DropZone = (props) => {
     let exists = false;
     inFiles.forEach((x) => {
       files.forEach((y) => {
-        if (x.path == y.path) exists = true;
+        if (x.path === y.path) exists = true;
       });
     });
     return exists;
   };
 
+  // TODO: Show modal on error
   const onDrop = useCallback(
     (inputFiles) => {
       if (files.length + inputFiles.length > 3) {
@@ -77,8 +78,19 @@ const DropZone = (props) => {
         ) : (
           renderDocuments()
         )}
-
-        <SelectButton onClick={open}>Select Text Files</SelectButton>
+        <ButtonGroup>
+          <div>
+            <SelectButton onClick={open}>Select Files</SelectButton>
+            <p style={{ marginTop: "4px", fontSize: "12px" }}>
+              .txt or .docx only
+            </p>
+          </div>
+          {files.length !== 0 && (
+            <div>
+              <SelectButton>Upload Files</SelectButton>
+            </div>
+          )}
+        </ButtonGroup>
         {files.length === 0 && (
           <p>{!isDragActive ? "or drag them here" : "and drop them"}</p>
         )}
@@ -108,6 +120,14 @@ const InnerWrapper = styled.div`
   transition: 0.2s;
   & > * {
     margin-bottom: 0.7rem;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  flex-direction: row;
+  & > * {
+    margin: 0 1rem;
   }
 `;
 
@@ -174,6 +194,7 @@ const CloseIcon = styled.div`
   top: 0px;
   right: 5px;
   color: black;
+  transition: 0.3s;
   & > * {
     width: 30px;
     height: 30px;
