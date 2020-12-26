@@ -8,29 +8,23 @@ const Navbar = () => {
     <NavWrapper>
       <Link to="/">
         <LogoWrapper>
-          <img
-            className="logo"
-            src={Logo}
-            alt="Logo.PNG"
-            width={50}
-            height={50}
-          />
+          <img className="logo" src={Logo} alt="Logo.PNG" />
           DokuMental
         </LogoWrapper>
       </Link>
       <div>
         <NavList>
-          <NavItem>
+          <li>
             <NavLink to="/">Home</NavLink>
-          </NavItem>
-          <NavItem>
+          </li>
+          <li>
             <NavLink to="/about">About Us</NavLink>
-          </NavItem>
-          <NavItem>
+          </li>
+          <li>
             <Link to="/details">
               <NavButton>How It Works</NavButton>
             </Link>
-          </NavItem>
+          </li>
         </NavList>
       </div>
     </NavWrapper>
@@ -50,22 +44,23 @@ const NavWrapper = styled.div`
 const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
+  color: white;
 `;
 
 const NavList = styled.ul`
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-const NavItem = styled.li`
-  margin-left: 1rem;
+  & > * {
+    margin-left: 1rem;
+  }
 `;
 
 const NavButton = styled.button`
   border: ${({ theme: { colors } }) => `1px solid ${colors.main}`};
   padding: 0.3rem;
   transition: 0.2s;
+  color: white;
   &:hover {
     background: ${({ theme: { colors } }) => colors.main};
   }
@@ -73,6 +68,7 @@ const NavButton = styled.button`
 
 const NavLink = styled(Link)`
   transition: 0.3s;
+  color: white;
   &:hover {
     color: ${({ theme: { colors } }) => colors.main};
   }

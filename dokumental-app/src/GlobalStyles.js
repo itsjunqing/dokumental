@@ -4,17 +4,20 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    font-size: 20px;
     font-family: Helvetica, Sans-Serif;
-    color: white;
     text-decoration: none;
     box-sizing: border-box;
+    font-size: 5vw;
   }
   
   body{
     background: #212121;
+    color: white;
   }
-
+  h1{
+    margin: 0;
+    font-size: 7vw;
+  }
   ul {
     list-style-type: none;
   }
@@ -26,25 +29,30 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  h1{
-    font-size: 36px;
+
+  .logo, .icon{
+    width: 12vw;
+    height: 12vw;
   }
 
-  @media (max-width: 550px){
-    * {
-      font-size: 15px;
+  // Max Size for screens larger than 450px
+  @media (min-width: 450px) { 
+    *{
+      font-size: 20px;
     }
-  }
-
-  @media (max-width: 425px){
-    * {
-      font-size: 10px;
+    h1{
+      font-size: 36px;
+    }
+    .icon{
+      width: 60px;
+      height: 60px;
     }
     .logo{
       width: 40px;
       height: 40px;
     }
   }
+
 `;
 
 export default GlobalStyle;
