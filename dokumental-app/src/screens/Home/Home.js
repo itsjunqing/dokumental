@@ -1,7 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+
 import { PageWrapper } from "../SharedStyles";
 import DropZone from "../../components/DropZone";
+import InfoBar from "./InfoBar";
 import ErrorModal from "../../components/Modal/ErrorModal";
 import * as actHome from "./ac-Home";
 
@@ -27,6 +29,8 @@ const Home = () => {
         </p>
       </div>
       <DropZone toggleErrorModal={toggleErrorModal} />
+      <InfoBar />
+      Copyright © Alfons Fernaldy
     </PageWrapper>
   );
 };
