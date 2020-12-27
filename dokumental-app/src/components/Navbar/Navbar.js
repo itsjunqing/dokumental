@@ -25,18 +25,6 @@ const Navbar = () => {
           </li>
           <li>
             <BottomNavLink
-              to="/about"
-              exact
-              activeStyle={{
-                color: Theme.colors.main,
-              }}
-            >
-              <FaInfoCircle />
-              <p>About</p>
-            </BottomNavLink>
-          </li>
-          <li>
-            <BottomNavLink
               to="/details"
               exact
               activeStyle={{
@@ -45,6 +33,18 @@ const Navbar = () => {
             >
               <FaBrain />
               <p>Details</p>
+            </BottomNavLink>
+          </li>
+          <li>
+            <BottomNavLink
+              to="/about"
+              exact
+              activeStyle={{
+                color: Theme.colors.main,
+              }}
+            >
+              <FaInfoCircle />
+              <p>About</p>
             </BottomNavLink>
           </li>
         </BottomNavList>

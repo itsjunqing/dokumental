@@ -1,0 +1,3 @@
+// Home
+export const HOME_HANDLE_STATE = "HOME_HANDLE_STATE";
+export const HOME_TOGGLE_MODAL = "HOME_TOGGLE_MODAL";

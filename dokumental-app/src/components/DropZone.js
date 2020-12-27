@@ -6,40 +6,37 @@ import txt_icon from "../res/images/txt_icon.png";
 import { useDropzone } from "react-dropzone";
 import { AiFillCloseCircle } from "react-icons/ai";
 
-const DropZone = (props) => {
+const DropZone = ({ toggleErrorModal }) => {
   const [files, setFiles] = useState([]);
-
-  const checkFiles = (inFiles) => {
-    let exists = false;
-    inFiles.forEach((x) => {
-      files.forEach((y) => {
-        if (x.path === y.path) exists = true;
-      });
-    });
-    return exists;
-  };
 
   // TODO: Show modal on error
   const onDrop = useCallback(
     (inputFiles) => {
+      const checkFiles = (inFiles) => {
+        let exists = false;
+        inFiles.forEach((x) => {
+          files.forEach((y) => {
+            if (x.path === y.path) exists = true;
+          });
+        });
+        return exists;
+      };
       if (files.length + inputFiles.length > 3) {
-        console.log("Max Files reached");
+        toggleErrorModal("Max Files Reached");
       } else if (checkFiles(inputFiles)) {
-        console.log("File already uploaded");
+        toggleErrorModal("File already uploaded");
       } else {
         setFiles([...files, ...inputFiles]);
       }
     },
-    [files]
+    [files, toggleErrorModal]
   );
 
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     accept: ".docx, .txt",
-    maxFiles: 3,
     noClick: true,
   });
-  console.log("Render -> ", files);
 
   const renderDocuments = useCallback(
     () => (
@@ -87,7 +84,9 @@ const DropZone = (props) => {
           </div>
           {files.length !== 0 && (
             <div>
-              <SelectButton>Upload Files</SelectButton>
+              <SelectButton onClick={() => toggleErrorModal("Howdy boah")}>
+                Upload Files
+              </SelectButton>
             </div>
           )}
         </ButtonGroup>
