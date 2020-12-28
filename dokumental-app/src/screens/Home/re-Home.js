@@ -6,7 +6,7 @@ const initialState = {
   submittedFiles: [],
 };
 
-export default (state = initialState, { type, payload }) => {
+const HomeReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case types.HOME_HANDLE_STATE:
       return { ...state, [payload.property]: payload.value };
@@ -22,3 +22,5 @@ export default (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export default HomeReducer

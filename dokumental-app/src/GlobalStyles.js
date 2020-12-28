@@ -30,7 +30,6 @@ const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-
   .logo, .icon{
     width: 12vw;
     height: 12vw;
