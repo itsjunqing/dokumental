@@ -30,7 +30,7 @@ const Home = () => {
       </div>
       <DropZone toggleErrorModal={toggleErrorModal} />
       <InfoBar />
-      Copyright © Alfons Fernaldy
+      Website Designed by Alfons Fernaldy
     </PageWrapper>
   );
 };

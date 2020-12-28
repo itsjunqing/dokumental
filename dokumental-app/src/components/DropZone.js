@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from "react";
 import styled from "styled-components";
+import { useTransition, animated } from "react-spring";
 import UploadImg from "../res/images/upload_documents.png";
 import docx_icon from "../res/images/docx_icon.png";
 import txt_icon from "../res/images/txt_icon.png";
@@ -38,33 +39,36 @@ const DropZone = ({ toggleErrorModal }) => {
     noClick: true,
   });
 
-  const renderDocuments = useCallback(
-    () => (
-      <DocWrapper>
-        {files.map(({ name, type, path, size }) => (
-          <DocCard key={path}>
-            <CloseIcon
-              onClick={() =>
-                setFiles(files.filter((item) => item.path !== path))
-              }
-            >
-              <AiFillCloseCircle />
-            </CloseIcon>
-            <img
-              className="icon"
-              src={type === "text/plain" ? txt_icon : docx_icon}
-              alt=".docx"
-            />
-            <div>
-              <h1>{name}</h1>
-              <p>{size} Bytes</p>
-            </div>
-          </DocCard>
-        ))}
-      </DocWrapper>
-    ),
-    [files]
-  );
+  const transition = useTransition(files, (file) => file.path, {
+    from: { opacity: 0, transform: "scale(0)" },
+    enter: { opacity: 1, transform: "scale(1)" },
+    leave: { opacity: 0, transform: "scale(0)" },
+    config: { duration: 200 },
+  });
+
+  const renderDocuments = () => {
+    return transition.map(({ item, key, props }) => {
+      const { name, type, path, size } = item;
+      return (
+        <DocCard key={key} style={props}>
+          <CloseIcon
+            onClick={() => setFiles(files.filter((item) => item.path !== path))}
+          >
+            <AiFillCloseCircle />
+          </CloseIcon>
+          <img
+            className="icon"
+            src={type === "text/plain" ? txt_icon : docx_icon}
+            alt=".docx"
+          />
+          <div>
+            <h1>{name}</h1>
+            <p>{size} Bytes</p>
+          </div>
+        </DocCard>
+      );
+    });
+  };
 
   return (
     <OutterWrapper {...getRootProps({})}>
@@ -73,7 +77,7 @@ const DropZone = ({ toggleErrorModal }) => {
         {files.length === 0 ? (
           <img className="icon" src={UploadImg} alt="Upload Documents Here" />
         ) : (
-          renderDocuments()
+          <DocWrapper>{renderDocuments()}</DocWrapper>
         )}
         <ButtonGroup>
           <div>
@@ -151,7 +155,7 @@ const DocWrapper = styled.div`
   }
 `;
 
-const DocCard = styled.div`
+const DocCard = styled(animated.div)`
   display: flex;
   position: relative;
   flex-direction: column;

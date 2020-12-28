@@ -40,9 +40,9 @@ const About = () => {
   ];
 
   const trail = useTrail(members.length, {
-    from: { opacity: 0, transform: "translateX(-30px)" },
-    to: { opacity: 1, transform: "translateX(0px)" },
-    config: { duration: 600, tension: 100, mass: 3 },
+    from: { opacity: 0, transform: "scale(0)" },
+    to: { opacity: 1, transform: "scale(1)" },
+    config: { tension: 40, friction: 6, clamp: true },
   });
   return (
     <PageWrapper>
@@ -137,9 +137,6 @@ const Card = styled(animated.div)`
     margin: 20px 0;
   }
   transition: 0.3s;
-  &:hover {
-    transform: translateX(30px);
-  }
 `;
 
 const ButtonGroup = styled.div`
