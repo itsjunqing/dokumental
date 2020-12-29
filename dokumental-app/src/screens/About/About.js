@@ -113,13 +113,17 @@ const Card = styled(animated.div)`
   justify-content: center;
   align-items: center;
   background: ${({ theme: { colors } }) => colors.elevated};
-  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
   padding: 90px 10px 10px;
   margin: 50px 10px;
   width: 250px;
   border-top: ${({ theme: { colors } }) => `2px solid ${colors.dark_main}`};
   & > * {
     margin: 20px 0;
+  }
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 13px 13px 4px rgba(0, 0, 0, 0.25);
   }
   &:hover ${SkillLogo} {
     animation: ${wiggle} 1s ease-in-out infinite;
