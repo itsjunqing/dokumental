@@ -35,18 +35,6 @@ const InfoWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-const InfoCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  width: 150px;
-  justify-content: center;
-  align-items: center;
-  & > * {
-    margin: 10px;
-  }
-`;
-
 const InfoLogo = styled.img`
   width: 60%;
   height: 60%;
@@ -60,6 +48,21 @@ const InfoLogoFrame = styled.div`
   height: 100px;
   background: white;
   border-radius: 50%;
+  transition: 0.3s;
 `;
 
+const InfoCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  & > * {
+    margin: 10px;
+  }
+  &:hover ${InfoLogoFrame} {
+    transform: translateY(-20px);
+  }
+`;
 export default InfoBar;

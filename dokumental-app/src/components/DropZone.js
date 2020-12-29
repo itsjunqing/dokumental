@@ -33,21 +33,26 @@ const DropZone = ({ toggleErrorModal }) => {
     [files, toggleErrorModal]
   );
 
+  const onDropRejected = useCallback(() =>
+    toggleErrorModal("Only .docx and .txt files are allowed")
+  );
+
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
+    onDropRejected,
     accept: ".docx, .txt",
     noClick: true,
   });
 
-  const transition = useTransition(files, (file) => file.path, {
+  const cardTransition = useTransition(files, (file) => file.path, {
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
-    config: { duration: 200 },
+    config: { mass: 1, tension: 300, friction: 18 },
   });
 
   const renderDocuments = () => {
-    return transition.map(({ item, key, props }) => {
+    return cardTransition.map(({ item, key, props }) => {
       const { name, type, path, size } = item;
       return (
         <DocCard key={key} style={props}>
@@ -74,11 +79,10 @@ const DropZone = ({ toggleErrorModal }) => {
     <OutterWrapper {...getRootProps({})}>
       <input {...getInputProps({})} />
       <InnerWrapper isDragActive={isDragActive}>
-        {files.length === 0 ? (
+        {files.length === 0 && (
           <img className="icon" src={UploadImg} alt="Upload Documents Here" />
-        ) : (
-          <DocWrapper>{renderDocuments()}</DocWrapper>
         )}
+        <DocWrapper>{renderDocuments()}</DocWrapper>
         <ButtonGroup>
           <div>
             <SelectButton onClick={open}>Select Files</SelectButton>
@@ -120,7 +124,6 @@ const InnerWrapper = styled.div`
   width: 90%;
   background: ${({ theme: { colors } }) => colors.dark_main};
   border: ${(props) => (props.isDragActive ? `2px` : `0px`)} dashed black;
-  transition: 0.2s;
   & > * {
     margin-bottom: 0.7rem;
   }
