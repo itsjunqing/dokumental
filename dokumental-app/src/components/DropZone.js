@@ -1,4 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useTransition, animated } from "react-spring";
 import UploadImg from "../res/images/upload_documents.png";
@@ -6,9 +7,11 @@ import docx_icon from "../res/images/docx_icon.png";
 import txt_icon from "../res/images/txt_icon.png";
 import { useDropzone } from "react-dropzone";
 import { AiFillCloseCircle } from "react-icons/ai";
+import * as actHome from "../screens/Home/ac-Home";
 
 const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
-  const [files, setFiles] = useState([]);
+  const dispatch = useDispatch();
+  const submittedFiles = useSelector((state) => state.Home.submittedFiles);
 
   // TODO: Show modal on error
   const onDrop = useCallback(
@@ -16,26 +19,30 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
       const checkFiles = (inFiles) => {
         let exists = false;
         inFiles.forEach((x) => {
-          files.forEach((y) => {
+          submittedFiles.forEach((y) => {
             if (x.path === y.path) exists = true;
           });
         });
         return exists;
       };
-      if (files.length + inputFiles.length > 3) {
+      if (submittedFiles.length + inputFiles.length > 3) {
         toggleErrorModal("Max Files Reached");
       } else if (checkFiles(inputFiles)) {
         toggleErrorModal("File already uploaded");
       } else {
-        setFiles([...files, ...inputFiles]);
+        dispatch(
+          actHome.handleState("submittedFiles", [
+            ...submittedFiles,
+            ...inputFiles,
+          ])
+        );
       }
     },
-    [files, toggleErrorModal]
+    [dispatch, submittedFiles, toggleErrorModal]
   );
 
-  const onDropRejected = useCallback(() =>
-    toggleErrorModal("Only .docx and .txt files are allowed")
-  );
+  const onDropRejected = () =>
+    toggleErrorModal("Only .docx and .txt files are allowed");
 
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
@@ -44,7 +51,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
     noClick: true,
   });
 
-  const cardTransition = useTransition(files, (file) => file.path, {
+  const cardTransition = useTransition(submittedFiles, (file) => file.path, {
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
@@ -57,7 +64,14 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
       return (
         <DocCard key={key} style={props}>
           <CloseIcon
-            onClick={() => setFiles(files.filter((item) => item.path !== path))}
+            onClick={() =>
+              dispatch(
+                actHome.handleState(
+                  "submittedFiles",
+                  submittedFiles.filter((item) => item.path !== path)
+                )
+              )
+            }
           >
             <AiFillCloseCircle />
           </CloseIcon>
@@ -79,7 +93,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
     <OutterWrapper {...getRootProps({})}>
       <input {...getInputProps({})} />
       <InnerWrapper isDragActive={isDragActive}>
-        {files.length === 0 && (
+        {submittedFiles.length === 0 && (
           <img className="icon" src={UploadImg} alt="Upload Documents Here" />
         )}
         <DocWrapper>{renderDocuments()}</DocWrapper>
@@ -90,7 +104,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
               .txt or .docx only
             </p>
           </div>
-          {files.length !== 0 && (
+          {submittedFiles.length !== 0 && (
             <div>
               <SelectButton
                 onClick={() =>
@@ -104,7 +118,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
             </div>
           )}
         </ButtonGroup>
-        {files.length === 0 && (
+        {submittedFiles.length === 0 && (
           <p>{!isDragActive ? "or drag them here" : "and drop them"}</p>
         )}
       </InnerWrapper>
