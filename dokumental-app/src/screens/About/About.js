@@ -64,7 +64,7 @@ const About = () => {
                 <h1>{fullName}</h1>
                 <p>{position}</p>
               </TextGroup>
-              <SkillLogo src={background} alt="" />
+              <img className="skill" src={background} alt="" />
               <ButtonGroup>
                 <SocialLink
                   href={linkedin}
@@ -100,12 +100,6 @@ const CardGroup = styled.div`
   margin: 50px 0;
 `;
 
-const SkillLogo = styled.img`
-  width: 60px;
-  height: 60px;
-  transition: 0.3s;
-`;
-
 const Card = styled(animated.div)`
   display: flex;
   position: relative;
@@ -116,7 +110,7 @@ const Card = styled(animated.div)`
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
   padding: 90px 10px 10px;
   margin: 50px 10px;
-  width: 250px;
+  width: 280px;
   border-top: ${({ theme: { colors } }) => `2px solid ${colors.dark_main}`};
   & > * {
     margin: 20px 0;
@@ -125,7 +119,7 @@ const Card = styled(animated.div)`
   &:hover {
     box-shadow: 13px 13px 4px rgba(0, 0, 0, 0.25);
   }
-  &:hover ${SkillLogo} {
+  &:hover > .skill {
     animation: ${float} 1s ease-in-out infinite;
   }
 `;

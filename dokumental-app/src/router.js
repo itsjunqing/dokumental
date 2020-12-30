@@ -5,6 +5,7 @@ import About from "./screens/About/About";
 import Details from "./screens/Details/Details";
 import Results from "./screens/Results/Results";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer";
 
 const routes = [
   { path: "/", name: "Home", Component: Home },
@@ -22,6 +23,7 @@ const Routes = () => {
           <Component />
         </Route>
       ))}
+      <Footer />
     </Router>
   );
 };

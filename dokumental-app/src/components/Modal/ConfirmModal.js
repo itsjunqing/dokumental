@@ -61,7 +61,7 @@ const ConfirmModal = (props) => {
       <Body>{message}</Body>
       <Footer>
         <CloseButton onClick={onClose}>Cancel</CloseButton>
-        <OkButton onClick={onOk}>{isLoading ? <Loader /> : "Ok"}</OkButton>
+        <OkButton onClick={onOk}>{isLoading ? <Loader /> : "Submit"}</OkButton>
       </Footer>
     </ReactModal>
   );

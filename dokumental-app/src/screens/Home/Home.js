@@ -53,7 +53,6 @@ const Home = () => {
         }
       />
       <InfoBar />
-      Website Designed by Alfons Fernaldy
     </PageWrapper>
   );
 };
