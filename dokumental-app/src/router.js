@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import About from "./screens/About/About";
 import Details from "./screens/Details/Details";
+import Results from "./screens/Results/Results";
 import Navbar from "./components/Navbar/Navbar";
-import Results from "./components/Results/Results";
 
 const routes = [
   { path: "/", name: "Home", Component: Home },

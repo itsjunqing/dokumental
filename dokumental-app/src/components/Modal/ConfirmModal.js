@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 import { withRouter } from "react-router-dom";
+import Loader from "../Loader";
 import "./Modal.css";
 
 const ConfirmModal = (props) => {
+  // Reducer states [visible, message and loading] are mapped into the modal itself
+  // This ensures that the host's modal component won't re-render if any of these variables are toggled
+  // Note: this may break especially if screen is not passed in properly so more testing is needed
   const {
-    property = null,
+    screen = null,
+    visibleProp = null,
+    messageProp = null,
+    loadingProp = null,
     onClose = () => {},
     onOk = () => {},
     title = "Title",
-    messageProp = null,
   } = props;
-  const isOpen = useSelector((state) => state.Home[property]);
-  const message = useSelector((state) => state.Home[messageProp]);
+
+  const isOpen = useSelector((state) => state[screen][visibleProp]);
+  const message = useSelector((state) => state[screen][messageProp]);
+  const isLoading = useSelector((state) => state[screen][loadingProp]);
+
   return (
     <ReactModal
       isOpen={isOpen}
@@ -52,7 +61,7 @@ const ConfirmModal = (props) => {
       <Body>{message}</Body>
       <Footer>
         <CloseButton onClick={onClose}>Cancel</CloseButton>
-        <OkButton onClick={onOk}>Submit</OkButton>
+        <OkButton onClick={onOk}>{isLoading ? <Loader /> : "Ok"}</OkButton>
       </Footer>
     </ReactModal>
   );
@@ -110,6 +119,8 @@ const CloseButton = styled(Button)`
   }
 `;
 const OkButton = styled(Button)`
+  display: flex;
+  justify-content: center;
   margin-right: -10px;
   background: ${({ theme: { colors } }) => `${colors.confirm}`};
   &:hover {

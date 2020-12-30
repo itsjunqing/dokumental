@@ -21,8 +21,9 @@ export const toggleModal = (visibleProperty, messageProperty, message = "") => {
   };
 };
 
-export const sendDocuments = () => {
+export const sendDocuments = (history) => {
   return {
     type: types.HOME_SEND_DOCUMENTS,
+    history,
   };
 };

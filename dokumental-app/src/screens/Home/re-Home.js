@@ -1,6 +1,7 @@
 import * as types from "../../store/ActionTypes";
 
 const initialState = {
+  isLoading: false,
   isErrorVisible: false,
   isConfirmVisible: false,
   errorMsg: "Placeholder",

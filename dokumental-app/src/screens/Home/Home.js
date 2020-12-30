@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { PageWrapper } from "../SharedStyles";
 import DropZone from "../../components/DropZone";
@@ -10,11 +11,13 @@ import * as actHome from "./ac-Home";
 
 const Home = () => {
   const dispatch = useDispatch();
+  let history = useHistory();
+
   const toggleModal = (property, msgProp, msg = "") => {
     dispatch(actHome.toggleModal(property, msgProp, msg));
   };
   const submitDocuments = () => {
-    dispatch(actHome.sendDocuments());
+    dispatch(actHome.sendDocuments(history));
   };
 
   return (
@@ -26,9 +29,11 @@ const Home = () => {
         onClose={() => toggleModal("isErrorVisible")}
       />
       <ConfirmModal
-        title="Confirm Action"
-        property="isConfirmVisible"
+        screen="Home"
+        visibleProp="isConfirmVisible"
         messageProp="confirmMsg"
+        loadingProp="isLoading"
+        title="Confirm Action"
         onClose={() => toggleModal("isConfirmVisible")}
         onOk={submitDocuments}
       />
