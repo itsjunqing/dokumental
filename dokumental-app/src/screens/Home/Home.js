@@ -5,12 +5,16 @@ import { PageWrapper } from "../SharedStyles";
 import DropZone from "../../components/DropZone";
 import InfoBar from "./InfoBar";
 import ErrorModal from "../../components/Modal/ErrorModal";
+import ConfirmModal from "../../components/Modal/ConfirmModal";
 import * as actHome from "./ac-Home";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const toggleErrorModal = (errMsg = "") => {
-    dispatch(actHome.toggleModal("isErrorVisible", errMsg));
+  const toggleModal = (property, msgProp, msg = "") => {
+    dispatch(actHome.toggleModal(property, msgProp, msg));
+  };
+  const submitDocuments = () => {
+    dispatch(actHome.sendDocuments());
   };
 
   return (
@@ -19,7 +23,14 @@ const Home = () => {
         title="Error"
         property="isErrorVisible"
         messageProp="errorMsg"
-        toggleModal={toggleErrorModal}
+        onClose={() => toggleModal("isErrorVisible")}
+      />
+      <ConfirmModal
+        title="Confirm Action"
+        property="isConfirmVisible"
+        messageProp="confirmMsg"
+        onClose={() => toggleModal("isConfirmVisible")}
+        onOk={submitDocuments}
       />
       <div>
         <h1>Predict Document Readability</h1>
@@ -28,7 +39,14 @@ const Home = () => {
           advanced classifier
         </p>
       </div>
-      <DropZone toggleErrorModal={toggleErrorModal} />
+      <DropZone
+        toggleErrorModal={(msg) =>
+          toggleModal("isErrorVisible", "errorMsg", msg)
+        }
+        toggleConfirmModal={(msg) =>
+          toggleModal("isConfirmVisible", "confirmMsg", msg)
+        }
+      />
       <InfoBar />
       Website Designed by Alfons Fernaldy
     </PageWrapper>

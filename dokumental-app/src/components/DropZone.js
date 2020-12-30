@@ -7,7 +7,7 @@ import txt_icon from "../res/images/txt_icon.png";
 import { useDropzone } from "react-dropzone";
 import { AiFillCloseCircle } from "react-icons/ai";
 
-const DropZone = ({ toggleErrorModal }) => {
+const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
   const [files, setFiles] = useState([]);
 
   // TODO: Show modal on error
@@ -92,7 +92,13 @@ const DropZone = ({ toggleErrorModal }) => {
           </div>
           {files.length !== 0 && (
             <div>
-              <SelectButton onClick={() => toggleErrorModal("Howdy boah")}>
+              <SelectButton
+                onClick={() =>
+                  toggleConfirmModal(
+                    "Are you sure you want to submit these documents?"
+                  )
+                }
+              >
                 Upload Files
               </SelectButton>
             </div>

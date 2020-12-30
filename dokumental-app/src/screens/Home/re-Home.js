@@ -2,7 +2,9 @@ import * as types from "../../store/ActionTypes";
 
 const initialState = {
   isErrorVisible: false,
+  isConfirmVisible: false,
   errorMsg: "Placeholder",
+  confirmMsg: "Placeholder",
   submittedFiles: [],
 };
 
@@ -12,10 +14,11 @@ const HomeReducer = (state = initialState, { type, payload }) => {
       return { ...state, [payload.property]: payload.value };
 
     case types.HOME_TOGGLE_MODAL:
+      const { visibleProperty, messageProperty, message } = payload;
       return {
         ...state,
-        [payload.property]: !state[payload.property],
-        errorMsg: payload.message,
+        [visibleProperty]: !state[visibleProperty],
+        [messageProperty]: message,
       };
 
     default:
@@ -23,4 +26,4 @@ const HomeReducer = (state = initialState, { type, payload }) => {
   }
 };
 
-export default HomeReducer
+export default HomeReducer;

@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 import { useTrail, animated } from "react-spring";
 import { PageWrapper } from "../SharedStyles";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
@@ -7,7 +7,7 @@ import BgImage1 from "../../res/images/react.png";
 import BgImage2 from "../../res/images/flask.png";
 import BgImage3 from "../../res/images/python.png";
 import ProfileImg1 from "../../res/images/alfons.PNG";
-import { wiggle } from "../../KeyframeAnimations";
+import { float } from "../../KeyframeAnimations";
 
 const members = [
   {
@@ -126,7 +126,7 @@ const Card = styled(animated.div)`
     box-shadow: 13px 13px 4px rgba(0, 0, 0, 0.25);
   }
   &:hover ${SkillLogo} {
-    animation: ${wiggle} 1s ease-in-out infinite;
+    animation: ${float} 1s ease-in-out infinite;
   }
 `;
 

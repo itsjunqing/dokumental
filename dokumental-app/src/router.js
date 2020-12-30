@@ -4,14 +4,16 @@ import Home from "./screens/Home/Home";
 import About from "./screens/About/About";
 import Details from "./screens/Details/Details";
 import Navbar from "./components/Navbar/Navbar";
+import Results from "./components/Results/Results";
+
+const routes = [
+  { path: "/", name: "Home", Component: Home },
+  { path: "/about", name: "About", Component: About },
+  { path: "/details", name: "Contact", Component: Details },
+  { path: "/results", name: "Results", Component: Results },
+];
 
 const Routes = () => {
-  const routes = [
-    { path: "/", name: "Home", Component: Home },
-    { path: "/about", name: "About", Component: About },
-    { path: "/details", name: "Contact", Component: Details },
-  ];
-
   return (
     <Router>
       <Navbar />

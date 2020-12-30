@@ -10,12 +10,19 @@ export const handleState = (property, value) => {
   };
 };
 
-export const toggleModal = (property, message = "") => {
+export const toggleModal = (visibleProperty, messageProperty, message = "") => {
   return {
     type: types.HOME_TOGGLE_MODAL,
     payload: {
-      property,
+      visibleProperty,
+      messageProperty,
       message,
     },
+  };
+};
+
+export const sendDocuments = () => {
+  return {
+    type: types.HOME_SEND_DOCUMENTS,
   };
 };

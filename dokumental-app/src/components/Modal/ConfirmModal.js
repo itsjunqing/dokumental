@@ -3,17 +3,19 @@ import { useSelector } from "react-redux";
 import ReactModal from "react-modal";
 import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
+import { withRouter } from "react-router-dom";
 import "./Modal.css";
 
-const ErrorModal = ({
-  property = null,
-  messageProp = null,
-  onClose = () => {},
-  title = "Title",
-}) => {
+const ConfirmModal = (props) => {
+  const {
+    property = null,
+    onClose = () => {},
+    onOk = () => {},
+    title = "Title",
+    messageProp = null,
+  } = props;
   const isOpen = useSelector((state) => state.Home[property]);
   const message = useSelector((state) => state.Home[messageProp]);
-
   return (
     <ReactModal
       isOpen={isOpen}
@@ -34,28 +36,23 @@ const ErrorModal = ({
           flexDirection: "column",
           color: "white",
           backgroundColor: "rgb(36,39,46)",
-          borderRadius: "0px",
+          borderRadius: "10px",
           border: "0px solid #24272e",
-          borderTop: "3px solid #FF0000",
           margin: "auto",
           width: "60vw",
           maxWidth: "400px",
           maxHeight: "200px",
-          padding: "20px 10px",
+          padding: "20px 10px 0px",
           boxShadow: "5px 6px 4px rgba(0, 0, 0, 0.25)",
         },
       }}
     >
-      <Header>
-        {title}
-        <CloseIcon onClick={onClose}>
-          <AiOutlineClose />
-        </CloseIcon>
-      </Header>
+      <Header>{title}</Header>
       <Dividor />
       <Body>{message}</Body>
       <Footer>
-        <CloseButton onClick={onClose}>Ok</CloseButton>
+        <CloseButton onClick={onClose}>Cancel</CloseButton>
+        <OkButton onClick={onOk}>Submit</OkButton>
       </Footer>
     </ReactModal>
   );
@@ -79,6 +76,7 @@ const Footer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  width: 100%;
 `;
 
 const CloseIcon = styled.div`
@@ -93,19 +91,30 @@ const Dividor = styled.hr`
   border-radius: 5px;
 `;
 
-const CloseButton = styled.button`
-  background: ${({ theme: { colors } }) => `${colors.error}`};
-  width: 80%;
-  border-radius: 5px;
+const Button = styled.button`
+  flex: 1;
   color: white;
   padding: 0.3rem;
+  /* margin: 0 -10px; */
   transition: 0.2s;
-  &:hover {
+`;
+
+const CloseButton = styled(Button)`
+  margin-left: -10px;
+  background: ${({ theme: { colors } }) => `${colors.error}`};
+  &:hover:enabled {
     background: ${({ theme: { colors } }) => `${colors.error_dark}`};
   }
-  &:active {
-    transform: scale(0.97);
+  &:disabled {
+    opacity: 0.5;
+  }
+`;
+const OkButton = styled(Button)`
+  margin-right: -10px;
+  background: ${({ theme: { colors } }) => `${colors.confirm}`};
+  &:hover {
+    background: ${({ theme: { colors } }) => `${colors.confirm_dark}`};
   }
 `;
 
-export default ErrorModal;
+export default withRouter(ConfirmModal);

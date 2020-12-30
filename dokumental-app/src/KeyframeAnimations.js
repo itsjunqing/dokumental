@@ -11,15 +11,21 @@ export const rotate = keyframes`
 `;
 
 export const wiggle = keyframes`
-  0%{ transform: rotate(0) }
+  0% { transform: rotate(0) }
   33% { transform: rotate(20deg) }
   66% { transform: rotate(-20deg) }
   100% { transform: rotate(0) }
 `;
 
 export const heartbeat = keyframes`
-  0%{ transform: scale(1) }
-  30%{ transform: scale(0.8) }
+  0% { transform: scale(1) }
+  30% { transform: scale(0.8) }
   40% { transform: scale(1.2) }
   100% { transform: scale(1) }
+`;
+
+export const float = keyframes`
+  0% { transform: translateY(0px) }
+  50% { transform: translateY(-8px) }
+  100% { transform: translateY(0px) }
 `;
