@@ -1,4 +1,5 @@
 import { all, call, delay, put, takeLatest, select } from "redux-saga/effects";
+import { POST, GET } from "../../API";
 import * as types from "../../store/ActionTypes";
 import * as actHome from "./ac-Home";
 import * as actResults from "../Results/ac-Results";
@@ -41,10 +42,15 @@ export function* sendDocuments({ history }) {
     console.log("Start Saga submitted Files -> ", submittedFiles);
     yield put(actHome.handleState("isLoading", true));
     // TODO: Replace delay with call to API
-    // const classificationResults = yield call()
-    yield delay(2000);
+    // yield delay(2000);
+    const results = yield call(
+      GET,
+      "https://5fe0c3d904f0780017de94b2.mockapi.io/Users",
+      {}
+    );
 
     console.log("End Saga");
+    console.log("Returned Results -> ", results);
     yield put(
       actResults.handleState("classificationResults", mockClassificationResults)
     );

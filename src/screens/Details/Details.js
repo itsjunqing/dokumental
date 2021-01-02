@@ -1,28 +1,27 @@
-import React, { useState } from "react";
-import { useTransition, useSpring, animated, useTrail } from "react-spring";
+import React from "react";
+import styled from "styled-components";
 import { PageWrapper } from "../SharedStyles";
 
 const Details = () => {
-  const [on, toggle] = useState(false);
-
-  const springs = useTrail(2, {
-    opacity: 1,
-    transform: "translateY(0px)",
-    from: { opacity: 0, transform: "translateY(50px)" },
-    config: { duration: 1000 },
-  });
-
   return (
-    <div>
-      {springs.map((animation, index) => (
-        <animated.div style={animation} key={index}>
-          Hello World
-        </animated.div>
-      ))}
-
-      <button onClick={() => toggle(!on)}>Change</button>
-    </div>
+    <PageWrapper>
+      <VideoWrapper>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/ana49FQ94RA"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
+      </VideoWrapper>
+    </PageWrapper>
   );
 };
+
+const VideoWrapper = styled.div`
+  height: 500px;
+  width: 100%;
+`;
 
 export default Details;

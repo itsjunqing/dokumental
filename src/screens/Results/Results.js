@@ -111,13 +111,14 @@ const Results = () => {
       </div>
       <ResultWrapper>
         {trail.map((animation, index) => {
-          const { fileName, edu_level, reader_age } = classificationResults[
+          const { id, fileName, edu_level, reader_age } = classificationResults[
             index
           ];
           return (
             <ResultCard
               style={animation}
-              topBorderColor={topBorderColor(edu_level)}
+              key={id}
+              category={topBorderColor(edu_level)}
             >
               <Number>
                 <img src={numIcon(index)} alt="edu level" />
@@ -166,7 +167,7 @@ const ResultCard = styled(animated.div)`
   background: ${({ theme: { colors } }) => colors.elevated};
   box-shadow: 5px 5px 4px rgba(0, 0, 0, 0.25);
   transition: 0.3s;
-  border-top: ${(props) => `3px solid ${props.topBorderColor}`};
+  border-top: ${(props) => `3px solid ${props.category}`};
   &:hover {
     box-shadow: 13px 13px 4px rgba(0, 0, 0, 0.25);
   }
