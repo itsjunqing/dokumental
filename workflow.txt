@@ -1,0 +1,32 @@
+## FILE UPLOAD
+
+For React: 
+1. Upload document with redux saga
+2. Call file upload endpoint with backend proxy and POST to upload
+3. Wait for results
+4. Handle the received results accordingly
+
+For Django:
+1. Create file upload endpoint
+2. Take in a file and read in the filename
+3. Pass filename into classifier
+4. Call to preprocess the document with the corresponding labels
+5. Return the results 
+
+Tests: 
+1. Ensure file is readable when endpoint is called
+	- from endpoint perspective
+	- from classification model perspective
+
+To-dos:
+1. Create model for classification results
+
+
+FileUpload class
+only support extensions (at the moment): [txt]
+- file_name: name of file uploaded
+- text: extracted text
+- word_count: number of words of the text
+- probabilities: probability of each text category (eg [0.3, 0.1, 0.4, 0.2, 0.1], where each index corresponds to the score for each text category) 
+
+
