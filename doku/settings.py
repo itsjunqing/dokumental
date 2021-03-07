@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'uploads.apps.UploadsConfig',
     'rest_framework',
+    'corsheaders', # new
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # new
+    'django.middleware.common.CommonMiddleware', # new
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,11 +128,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# new
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
 
 # Cross Origin Resource Sharing (CORS) whitelist
 
-# CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ORIGIN_WHITELIST = (
-#     'http://localhost:3000',  # local React server
-# )
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',  # local React server
+)
 
