@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # file uploads in django
     'uploads.apps.UploadsConfig',
     'rest_framework',
 ]
@@ -125,3 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Cross Origin Resource Sharing (CORS) whitelist
+
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',  # local React server
+# )
+
