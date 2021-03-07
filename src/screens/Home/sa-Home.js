@@ -43,10 +43,20 @@ export function* sendDocuments({ history }) {
     yield put(actHome.handleState("isLoading", true));
     // TODO: Replace delay with call to API
     // yield delay(2000);
+    let formData = new FormData();
+    submittedFiles.forEach((n, i) => {
+      formData.append(`file`, n)
+    })
+
+    const header = {
+      'Content-Type': 'multipart/form-data;',
+    }
+    console.log("FORM DATA ", formData)
     const results = yield call(
-      GET,
-      "https://5fe0c3d904f0780017de94b2.mockapi.io/Users",
-      {}
+      POST,
+      "http://localhost:8000/uploads/",
+      formData,
+      header
     );
 
     console.log("End Saga");
