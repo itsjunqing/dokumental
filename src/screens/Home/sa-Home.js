@@ -60,7 +60,7 @@ export function* sendDocuments({ history }) {
     // );
     const results = yield call(
       POST,
-      "http://dokumental.herokuapp.com/uploads/",
+      "https://dokumental.herokuapp.com/uploads/",
       formData,
       header
     );
