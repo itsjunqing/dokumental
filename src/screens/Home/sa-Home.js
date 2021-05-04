@@ -50,6 +50,8 @@ export function* sendDocuments({ history }) {
 
     const header = {
       'Content-Type': 'multipart/form-data;',
+      'Access-Control-Allow-Origin': 'https://dokumental.herokuapp.com/uploads/',
+      'Access-Control-Allow-Credentials': 'true',
     }
     console.log("FORM DATA ", formData)
     // const results = yield call(
