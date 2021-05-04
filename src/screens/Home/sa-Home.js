@@ -52,13 +52,19 @@ export function* sendDocuments({ history }) {
       'Content-Type': 'multipart/form-data;',
     }
     console.log("FORM DATA ", formData)
+    // const results = yield call(
+    //   POST,
+    //   "http://localhost:8000/uploads/",
+    //   formData,
+    //   header
+    // );
     const results = yield call(
       POST,
-      "http://localhost:8000/uploads/",
+      "http://dokumental.herokuapp.com/uploads/",
       formData,
       header
     );
-
+     
     console.log("End Saga");
     console.log("Returned Results -> ", results);
     yield put(
