@@ -32,8 +32,11 @@ SECRET_KEY = 's&ex4rc2=vap7c&+1$frl09ja*y@zr)a9umu75kuf-0$=y%8+s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'https://dokumental.herokuapp.com/', 
-                'https://dokumental-fyp.netlify.app/']
+ALLOWED_HOSTS = ['*']
+
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1:8000', 
+                # 'https://dokumental.herokuapp.com/', 
+                # 'https://dokumental-fyp.netlify.app/']
 
 
 # Application definition
