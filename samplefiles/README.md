@@ -18,3 +18,5 @@ This directory contains samples of for `.txt` for testing and verification purpo
 
 Further tests for `.pdf, .doc, .docx, .html, .htm, .odt` may be required. 
 
+Reference: https://en.wikipedia.org/wiki/Education_in_the_United_States
+

@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import os
 from pathlib import Path
 
+import dj_database_url
+import django_heroku
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,9 +30,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 's&ex4rc2=vap7c&+1$frl09ja*y@zr)a9umu75kuf-0$=y%8+s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'https://dokumental.herokuapp.com/', 
+                'https://dokumental-fyp.netlify.app/']
 
 
 # Application definition
@@ -50,6 +54,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # new
     'django.middleware.common.CommonMiddleware', # new
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # new added for heroku 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMisddleware',
@@ -126,6 +131,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
 
 # new
@@ -143,3 +150,4 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',  # local React server
 )
 
+django_heroku.settings(locals())

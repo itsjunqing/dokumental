@@ -20,8 +20,11 @@ def upload_files(request):
 		files = request.FILES.getlist('file')
 		upload_results = []
 		if form.is_valid():
+			if len(files) == 0:
+				return HttpResponse("Please indicate upload file field as 'file'", status=400)
 			for f in files:
 				text = f.read().decode('utf-8')
+				print(f"From views.py for {f}: Running model...")
 				result, percentages = run_model(text)
 				user_result = {
 					"result": result,
