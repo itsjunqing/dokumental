@@ -48,11 +48,17 @@ export function* sendDocuments({ history }) {
       formData.append(`file`, n)
     })
 
+    // const header = {
+    //   'Content-Type': 'multipart/form-data;',
+    //   'Access-Control-Allow-Origin': 'https://dokumental.herokuapp.com/uploads/',
+    //   'Access-Control-Allow-Credentials': 'true',
+    // }
+    // 
     const header = {
       'Content-Type': 'multipart/form-data;',
-      'Access-Control-Allow-Origin': 'https://dokumental.herokuapp.com/uploads/',
-      'Access-Control-Allow-Credentials': 'true',
+      'Access-Control-Allow-Origin': '*',
     }
+
     console.log("FORM DATA ", formData)
     // const results = yield call(
     //   POST,
