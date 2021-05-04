@@ -148,13 +148,13 @@ REST_FRAMEWORK = {
 
 
 # Cross Origin Resource Sharing (CORS) whitelist
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 # CORS_ALLOW_CREDENTIALS = True
-# CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ORIGIN_WHITELIST = (
-#     'http://localhost:3000',  # local React server
-#     'http://dokumental-fyp.netlify.app',
-#     '0.0.0.0'
-# )
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',  # local React server
+    'https://dokumental-fyp.netlify.app',
+    '0.0.0.0'
+)
 
 django_heroku.settings(locals())
