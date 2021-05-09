@@ -1,5 +1,5 @@
-import { all, call, delay, put, takeLatest, select } from "redux-saga/effects";
-import { POST, GET } from "../../API";
+import { all, call, put, takeLatest, select } from "redux-saga/effects";
+import { POST } from "../../API";
 import * as types from "../../store/ActionTypes";
 import * as actHome from "./ac-Home";
 import * as actResults from "../Results/ac-Results";
@@ -66,15 +66,15 @@ export function* sendDocuments({ history }) {
     //   formData,
     //   header
     // );
-    const results = yield call(
-      POST,
-      "https://dokumental.herokuapp.com/uploads/",
-      formData,
-      header
-    );
+    // const results = yield call(
+    //   POST,
+    //   "https://dokumental.herokuapp.com/uploads/",
+    //   formData,
+    //   header
+    // );
      
     console.log("End Saga");
-    console.log("Returned Results -> ", results);
+    // console.log("Returned Results -> ", results);
     yield put(
       actResults.handleState("classificationResults", mockClassificationResults)
     );
@@ -84,7 +84,11 @@ export function* sendDocuments({ history }) {
     history.push("/results");
     // Documents sent successfully
     yield put({ type: types.HOME_SEND_DOCUMENTS_SUCCESS });
+
   } catch (e) {
+    yield put(actHome.handleState("isLoading", false));
+    yield put(actHome.handleState("isConfirmVisible", false));
+    yield put(actHome.handleState("isToastVisible", true));
     console.log(e);
   }
 }

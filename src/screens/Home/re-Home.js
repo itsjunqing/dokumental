@@ -4,6 +4,7 @@ const initialState = {
   isLoading: false,
   isErrorVisible: false,
   isConfirmVisible: false,
+  isToastVisible: false,
   errorMsg: "Placeholder",
   confirmMsg: "Placeholder",
   submittedFiles: [],

@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"), url(./res/fonts/helvetica.woff) format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"), url(./res/fonts/helvetica-bold.woff) format("woff");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: local("Helvetica"), url(./res/fonts/helvetica-light.woff) format("woff");
+  font-weight: lighter;
+  font-display: swap;
+}

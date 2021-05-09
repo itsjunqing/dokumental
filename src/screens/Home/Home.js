@@ -1,6 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, {useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useToasts } from 'react-toast-notifications';
 
 import { PageWrapper } from "../SharedStyles";
 import DropZone from "../../components/DropZone";
@@ -12,6 +13,19 @@ import * as actHome from "./ac-Home";
 const Home = () => {
   const dispatch = useDispatch();
   let history = useHistory();
+  const isToastVisible = useSelector((state) => state.Home.isToastVisible);
+  const { addToast } = useToasts();
+
+  useEffect(() => {
+    console.log("Hi")
+    if(isToastVisible){
+      addToast("Failed to upload documents, please try again", {
+        appearance: 'error',
+        autoDismiss: true,
+      })
+      dispatch(actHome.handleState("isToastVisible", false));
+    }
+  }, [isToastVisible])
 
   const toggleModal = (property, msgProp, msg = "") => {
     dispatch(actHome.toggleModal(property, msgProp, msg));

@@ -7,6 +7,7 @@ import BgImage1 from "../../res/images/react.png";
 import BgImage2 from "../../res/images/flask.png";
 import BgImage3 from "../../res/images/python.png";
 import ProfileImg1 from "../../res/images/alfons.PNG";
+import ProfileImg2 from "../../res/images/jq.png";
 import { float } from "../../KeyframeAnimations";
 
 const members = [
@@ -21,7 +22,7 @@ const members = [
   {
     fullName: "Jun Qing Lim",
     position: "Back end Lead",
-    profile: ProfileImg1,
+    profile: ProfileImg2,
     background: BgImage2,
     linkedin: "https://www.linkedin.com/in/itsjunqing/",
     github: "https://github.com/itsjunqing",

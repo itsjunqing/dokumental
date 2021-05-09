@@ -4,10 +4,13 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
-    font-family: Helvetica Light, Helvetica, Sans-Serif;
+    font-family: 'Helvetica', sans-serif !important;
     text-decoration: none;
     box-sizing: border-box;
-    font-size: 5vw;
+    font-size: 14px;
+    @media(min-width: 960px){
+      font-size: 16px;
+    }
   }
   
   body{
