@@ -8,6 +8,7 @@ import BgImage2 from "../../res/images/flask.png";
 import BgImage3 from "../../res/images/python.png";
 import ProfileImg1 from "../../res/images/alfons.PNG";
 import ProfileImg2 from "../../res/images/jq.png";
+import ProfileImg3 from "../../res/images/yc.png";
 import { float } from "../../KeyframeAnimations";
 
 const members = [
@@ -30,7 +31,7 @@ const members = [
   {
     fullName: "Yin Cheng Chang",
     position: "Neural Network Lead",
-    profile: ProfileImg1,
+    profile: ProfileImg3,
     background: BgImage3,
     linkedin: "https://www.linkedin.com/in/yin-cheng-chang-7552881a3/",
     github: "https://github.com/ycha0059",

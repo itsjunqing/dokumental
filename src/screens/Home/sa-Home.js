@@ -7,34 +7,40 @@ import * as actResults from "../Results/ac-Results";
 export function* sendDocuments({ history }) {
   const mockClassificationResults = [
     {
-      id: "1",
-      fileName: "post_graduate.txt",
-      edu_level: "Postgraduate",
-      reader_age: "22+",
+      name: "library_16.pdf",
+      level: "Middle School",
+      percentages: [22.64, 62.6, 10.34, 4.41],
     },
     {
-      id: "2",
-      fileName: "under_graduate.txt",
-      edu_level: "Undergraduate",
-      reader_age: "19-21",
+      name: "acs.jafc.8b07023.pdf",
+      level: "Undergraduate",
+      percentages: [1.5, 6.89, 39.32, 52.29],
     },
     {
-      id: "3",
-      fileName: "high_school.txt",
-      edu_level: "High School",
-      reader_age: "15-18",
+      name: "Mu\u0308ller2018_Article_Sim4CVAPhoto-RealisticSimulato.pdf",
+      level: "High School",
+      percentages: [0.98, 5.04, 55.31, 38.66],
     },
     {
-      id: "4",
-      fileName: "secondary_school.txt",
-      edu_level: "Secondary School",
-      reader_age: "14-15",
+      name: "exsy.12644.pdf",
+      level: "Undergraduate",
+      percentages: [0.7, 3.97, 20.61, 74.72],
     },
     {
-      id: "5",
-      fileName: "elementary_school.txt",
-      edu_level: "Elementary School",
-      reader_age: "11-13",
+      name: "adma.201603917.pdf",
+      level: "Undergraduate",
+      percentages: [0.47, 2.4, 27.77, 69.36],
+    },
+    {
+      name: "s41592-020-01023-0.pdf",
+      level: "Middle School",
+      percentages: [13.92, 43.28, 36.33, 6.47],
+    },
+    {
+      name:
+        "The use of machine learning black boxes explanation systems to improve the quality of school education.pdf",
+      level: "Middle School",
+      percentages: [11.02, 35.88, 26.07, 27.03],
     },
   ];
   try {

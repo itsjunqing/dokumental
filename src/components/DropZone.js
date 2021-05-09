@@ -25,8 +25,8 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
         });
         return exists;
       };
-      if (submittedFiles.length + inputFiles.length > 3) {
-        toggleErrorModal("Max Files Reached");
+      if (submittedFiles.length + inputFiles.length > 5) {
+        toggleErrorModal("You can only upload a maximum of 5 documents");
       } else if (checkFiles(inputFiles)) {
         toggleErrorModal("File already uploaded");
       } else {

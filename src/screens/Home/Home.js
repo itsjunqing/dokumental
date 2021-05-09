@@ -17,7 +17,6 @@ const Home = () => {
   const { addToast } = useToasts();
 
   useEffect(() => {
-    console.log("Hi")
     if(isToastVisible){
       addToast("Failed to upload documents, please try again", {
         appearance: 'error',
