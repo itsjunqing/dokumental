@@ -5,6 +5,7 @@ import { useTransition, animated } from "react-spring";
 import UploadImg from "../res/images/upload_documents.png";
 import docx_icon from "../res/images/docx_icon.png";
 import txt_icon from "../res/images/txt_icon.png";
+import pdf_icon from "../res/images/pdf_icon.png";
 import { useDropzone } from "react-dropzone";
 import { AiFillCloseCircle } from "react-icons/ai";
 import * as actHome from "../screens/Home/ac-Home";
@@ -42,12 +43,12 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
   );
 
   const onDropRejected = () =>
-    toggleErrorModal("Only .docx and .txt files are allowed");
+    toggleErrorModal("Only txt, docx and pdf files are allowed");
 
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     onDropRejected,
-    accept: ".docx, .txt",
+    accept: ".docx, .txt, .pdf",
     noClick: true,
   });
 
@@ -57,6 +58,14 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
     leave: { opacity: 0, transform: "scale(0)" },
     config: { mass: 1, tension: 300, friction: 18 },
   });
+
+  const fileIcon = (type) => {
+    switch(type){
+      case "text/plain": return txt_icon;
+      case "application/pdf": return pdf_icon;
+      default: return docx_icon;
+    }
+  }
 
   const renderDocuments = () => {
     return cardTransition.map(({ item, key, props }) => {
@@ -77,7 +86,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
           </CloseIcon>
           <img
             className="icon"
-            src={type === "text/plain" ? txt_icon : docx_icon}
+            src={fileIcon(type)}
             alt=".docx"
           />
           <div>
@@ -101,7 +110,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
           <div>
             <SelectButton onClick={open}>Select Files</SelectButton>
             <p style={{ marginTop: "4px", fontSize: "12px" }}>
-              .txt or .docx only
+              .txt, .pdf or .docx only
             </p>
           </div>
           {submittedFiles.length !== 0 && (

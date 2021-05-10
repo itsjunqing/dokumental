@@ -79,7 +79,7 @@ export function* sendDocuments({ history }) {
     //   header
     // );
      
-    console.log("End Saga");
+    console.log("End Saga",);
     // console.log("Returned Results -> ", results);
     yield put(
       actResults.handleState("classificationResults", mockClassificationResults)
