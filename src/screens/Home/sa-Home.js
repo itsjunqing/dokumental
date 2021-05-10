@@ -32,7 +32,7 @@ export function* sendDocuments({ history }) {
       percentages: [0.47, 2.4, 27.77, 69.36],
     },
     {
-      name: "s41592-020-01023-0.pdf",
+      name: "Lakovschek2019_Article_ARareCaseOfCancer-to-cancerMet.pdf",
       level: "Middle School",
       percentages: [13.92, 43.28, 36.33, 6.47],
     },

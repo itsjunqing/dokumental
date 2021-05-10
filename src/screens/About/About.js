@@ -4,7 +4,7 @@ import { useTrail, animated } from "react-spring";
 import { PageWrapper } from "../SharedStyles";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import BgImage1 from "../../res/images/react.png";
-import BgImage2 from "../../res/images/flask.png";
+import BgImage2 from "../../res/images/django.png";
 import BgImage3 from "../../res/images/python.png";
 import ProfileImg1 from "../../res/images/alfons.PNG";
 import ProfileImg2 from "../../res/images/jq.png";

@@ -9,6 +9,11 @@ import NumTwo from "../../res/images/two.png";
 import NumThree from "../../res/images/three.png";
 import NumFour from "../../res/images/four.png";
 import NumFive from "../../res/images/five.png";
+import NumSix from "../../res/images/six.png";
+import NumSeven from "../../res/images/seven.png";
+import NumEight from "../../res/images/eight.png";
+import NumNine from "../../res/images/nine.png";
+import NumTen from "../../res/images/ten.png";
 import PostGraduate from "../../res/images/post_graduate.png";
 import HighSchool from "../../res/images/high_school.png";
 import ElementarySchool from "../../res/images/elementary_school.png";
@@ -33,6 +38,16 @@ const Results = () => {
         return NumFour;
       case 4:
         return NumFive;
+      case 5:
+        return NumSix;
+      case 6:
+        return NumSeven;
+      case 7:
+        return NumEight;
+      case 8:
+        return NumNine;
+      case 9:
+        return NumTen;
       default:
         return NumOne;
     }
@@ -187,6 +202,21 @@ const TextGroup = styled.div`
   p {
     font-size: 14px;
   }
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
 `;
 
 const ConfidenceGroup = styled.div`

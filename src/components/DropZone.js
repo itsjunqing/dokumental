@@ -26,8 +26,8 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
         });
         return exists;
       };
-      if (submittedFiles.length + inputFiles.length > 5) {
-        toggleErrorModal("You can only upload a maximum of 5 documents");
+      if (submittedFiles.length + inputFiles.length > 10) {
+        toggleErrorModal("You can only upload a maximum of 10 documents");
       } else if (checkFiles(inputFiles)) {
         toggleErrorModal("File already uploaded");
       } else {
@@ -91,7 +91,7 @@ const DropZone = ({ toggleErrorModal, toggleConfirmModal }) => {
           />
           <div>
             <h1>{name}</h1>
-            <p>{size} Bytes</p>
+            <p>{Math.round(size / 1024, 2)} KB</p>
           </div>
         </DocCard>
       );
