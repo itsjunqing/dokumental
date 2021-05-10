@@ -19,6 +19,8 @@ const Results = () => {
     (state) => state.Results.classificationResults
   );
 
+  console.log("classificationResults = ", classificationResults);
+
   const numIcon = (index) => {
     switch (index) {
       case 0:

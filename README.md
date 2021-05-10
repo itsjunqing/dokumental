@@ -5,6 +5,9 @@
 
 <h4 align="center">A responsive web app made using <a href="https://reactjs.org/" target="_blank">React.js</a>.</h4>
 
+## How to run 
+Type `yarn` to install and update project
+Type `yarn start` to start the react project 
 
 ## About The Project
 Dokumental is the front-end component of the document classification project. 
@@ -29,3 +32,6 @@ Animations are powered by React Spring.
 - [React Spring](https://www.react-spring.io/)
 - [React Dropzone](https://react-dropzone.js.org/)
 
+
+### Updates
+1. Website accept: pdf, docx, txt

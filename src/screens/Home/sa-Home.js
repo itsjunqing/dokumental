@@ -66,12 +66,12 @@ export function* sendDocuments({ history }) {
     }
 
     console.log("FORM DATA ", formData)
-    // const results = yield call(
-    //   POST,
-    //   "http://localhost:8000/uploads/",
-    //   formData,
-    //   header
-    // );
+    const results = yield call(
+      POST,
+      "http://localhost:8000/uploads/",
+      formData,
+      header
+    );
     // const results = yield call(
     //   POST,
     //   "https://dokumental.herokuapp.com/uploads/",
@@ -80,10 +80,13 @@ export function* sendDocuments({ history }) {
     // );
      
     console.log("End Saga",);
-    // console.log("Returned Results -> ", results);
+    console.log("Returned Results -> ", results);
     yield put(
-      actResults.handleState("classificationResults", mockClassificationResults)
+      actResults.handleState("classificationResults", results.data)
     );
+    // yield put(
+    //   actResults.handleState("classificationResults", mockClassificationResults)
+    // );
     yield put(actHome.handleState("isLoading", false));
     yield put(actHome.handleState("isConfirmVisible", false));
     yield put(actHome.handleState("submittedFiles", []));
