@@ -5,6 +5,7 @@ const initialState = {
   isErrorVisible: false,
   isConfirmVisible: false,
   isToastVisible: false,
+  toastMsg: "Failed to upload documents, please try again",
   errorMsg: "Placeholder",
   confirmMsg: "Placeholder",
   submittedFiles: [],

@@ -14,11 +14,12 @@ const Home = () => {
   const dispatch = useDispatch();
   let history = useHistory();
   const isToastVisible = useSelector((state) => state.Home.isToastVisible);
+  const toastMsg = useSelector((state) => state.Home.toastMsg);
   const { addToast } = useToasts();
 
   useEffect(() => {
     if(isToastVisible){
-      addToast("Failed to upload documents, please try again", {
+      addToast(toastMsg, {
         appearance: 'error',
         autoDismiss: true,
       })

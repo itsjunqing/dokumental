@@ -7,6 +7,11 @@ import * as actResults from "../Results/ac-Results";
 export function* sendDocuments({ history }) {
   const mockClassificationResults = [
     {
+      name: "empty.pdf",
+      level: "Fail",
+      description: "File is empty",
+    },
+    {
       name: "library_16.pdf",
       level: "Middle School",
       percentages: [22.64, 62.6, 10.34, 4.41],
@@ -81,12 +86,22 @@ export function* sendDocuments({ history }) {
      
     console.log("End Saga",);
     console.log("Returned Results -> ", results);
+    const readability_results = results.data
+
+    readability_results.forEach(result => {
+      console.log("Result: ", result)
+      if(result.level === "Fail"){
+        if(result.description){
+          throw result.description
+        }
+        throw "Missing error description"
+      }
+    })
+
     yield put(
-      actResults.handleState("classificationResults", results.data)
+      actResults.handleState("classificationResults", readability_results)
     );
-    // yield put(
-    //   actResults.handleState("classificationResults", mockClassificationResults)
-    // );
+    
     yield put(actHome.handleState("isLoading", false));
     yield put(actHome.handleState("isConfirmVisible", false));
     yield put(actHome.handleState("submittedFiles", []));
@@ -95,10 +110,13 @@ export function* sendDocuments({ history }) {
     yield put({ type: types.HOME_SEND_DOCUMENTS_SUCCESS });
 
   } catch (e) {
+    // Make sure errorMsg is string type which can be displayed in toast
+    const errorMsg = typeof e === 'string' ? e : "Failed to upload documents, please try again"
     yield put(actHome.handleState("isLoading", false));
     yield put(actHome.handleState("isConfirmVisible", false));
+    yield put(actHome.handleState("toastMsg", errorMsg));
     yield put(actHome.handleState("isToastVisible", true));
-    console.log(e);
+    console.log(errorMsg);
   }
 }
 
