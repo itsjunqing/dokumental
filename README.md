@@ -10,8 +10,8 @@ Type `yarn` to install and update project
 Type `yarn start` to start the react project 
 
 ## About The Project
-Dokumental is the front-end component of the document classification project. 
-It serves as the landing page for users to submit .txt or .docx files to the server which hosts a neural network classifier.
+Dokumental is the front-end component of the document classification project for Monash's Final Year Project. 
+It serves as the landing page for users to submit .txt, .pdf or .docx files to the server which hosts a neural network classifier.
 Once the readability for the documents have been ascertained, the server sends back the results to the web app which shows them to the users.
 
 Currently it has the following screens:
@@ -23,6 +23,16 @@ Currently it has the following screens:
 
 Almost all of the UI components are made from scratch without external CSS libraries.
 Animations are powered by React Spring.
+
+## Screenshots
+### Home Page
+<img src="src/res/images/home_page.png" alt="Home Page" height="500">
+
+### Document Dropzone
+<img src="src/res/images/drop_zone.png" alt="Document Dropzone">
+
+### Results Page
+<img src="src/res/images/results.png" alt="Results Page" height="500">
 
 ## Core Libraries
 
